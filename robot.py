@@ -12,7 +12,7 @@ class MyRobot(wpilib.TimedRobot):
         self.left_motor = wpilib.Spark(0)
         self.right_motor = wpilib.Spark(1)
         self.drive = wpilib.drive.DifferentialDrive(self.left_motor, self.right_motor)
-        self.stick = wpilib.Joystick(1)
+        self.stick = wpilib.Joystick(0)
         self.timer = wpilib.Timer()
 
     def autonomousInit(self):
@@ -41,6 +41,8 @@ class MyRobot(wpilib.TimedRobot):
         #  This is the deadzone code. If there are issues with it, comment it out, and uncomment the code below.
         #  This will activate arcadeDrive without any deadzone code.
         driveDirection = deadzone.addDeadzone(self.stick.getY(), self.stick.getX())
+        print("X: " + str(driveDirection["x"]))
+        print("Y: " + str(driveDirection["y"]))
         self.drive.arcadeDrive(driveDirection["x"], driveDirection["y"])
 
         #  Uncomment this to remove deadzone
