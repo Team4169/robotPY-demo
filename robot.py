@@ -1,6 +1,7 @@
 import wpilib
 import wpilib.drive
 import deadzone
+from constants import constants
 
 class MyRobot(wpilib.TimedRobot):
 
@@ -9,10 +10,18 @@ class MyRobot(wpilib.TimedRobot):
         This function is called upon program startup and
         should be used for any initialization code.
         """
-        self.left_motor = wpilib.Spark(0)
-        self.right_motor = wpilib.Spark(1)
-        self.drive = wpilib.drive.DifferentialDrive(self.left_motor, self.right_motor)
+
+        self.front_left_motor = wpilib.Talon(constants["frontLeftPort"])
+        self.rear_left_motor = wpilib.Talon(constants["rearLeftPort"])
+
+        self.front_right_motor = wpilib.Talon(constants["frontRightPort"])
+        self.rear_right_motor = wpilib.Talon(constants["rearRightPort"])
+
+
+        self.drive = wpilib.drive.MecanumDrive(self.front_left_motor, self.rear_left_motor, self.front_right_motor, self.rear_right_motor)
+
         self.stick = wpilib.Joystick(0)
+        self.controller = wpilib.XboxController(0)
         self.timer = wpilib.Timer()
 
     def autonomousInit(self):
