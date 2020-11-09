@@ -17,6 +17,7 @@ class MyRobot(wpilib.TimedRobot):
         self.front_right_motor = wpilib.Talon(constants["frontRightPort"])
         self.rear_right_motor = wpilib.Talon(constants["rearRightPort"])
 
+        self.test_motor = wpilib.PWMTalonSRX(10)
 
         self.drive = wpilib.drive.MecanumDrive(self.front_left_motor, self.rear_left_motor, self.front_right_motor, self.rear_right_motor)
 
@@ -58,10 +59,23 @@ class MyRobot(wpilib.TimedRobot):
         #  This will activate arcadeDrive without any deadzone code.
         driveDirection = deadzone.addDeadzone(self.stick.getY(), self.stick.getX())
 
-        print("X: " + str(driveDirection["x"]))
-        print("Y: " + str(driveDirection["y"]))
+        # print("X: " + str(driveDirection["x"]))
+        # print("Y: " + str(driveDirection["y"]))
 
         self.drive.driveCartesian(driveDirection["y"], driveDirection["x"], 0)  # Drive on an X Y plain using joystick axis
+        isAPressed = self.controller.getAButton()
+        print(isAPressed)
+        if isAPressed:
+            # self.test_motor.setSpeed(1)
+            self.test_motor.set(1)
+            self.test_motor.
+            print("Go!")
+        else:
+            # self.test_motor.setSpeed(0)
+            self.test_motor.set(0)
+            print("Stop!")
+
+        print(self.test_motor.get())
 
 if __name__ == "__main__":
     wpilib.run(MyRobot)
