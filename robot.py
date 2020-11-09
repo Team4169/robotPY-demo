@@ -30,19 +30,26 @@ class MyRobot(wpilib.TimedRobot):
         self.timer.start()
 
     def autonomousPeriodic(self):
+
+        """
+        driveCartesian(ySpeed: float, xSpeed: float, zRotation: float, gyroAngle: float = 0.0)
+
+        NOTE: I herd coded zRotation at 0, and I don't full understand what that will do
+        """
+
         """This function is called periodically during autonomous."""
         if self.timer.get() < 2.0:
             print("Driving forward at half speed")
-            self.drive.arcadeDrive(-0.5, 0)  # Drive forwards at half speed for 2 seconds
+            self.drive.driveCartesian(0.5, 0.5, 0)  # Drive diagonal at half speed
         elif self.timer.get() < 3.0:
             print("Driving at a 45 degree angle at half speed")
-            self.drive.arcadeDrive(-0.5, 0.25)  # Drive at a 45 degree angle for 1 second
+            self.drive.driveCartesian(1, 0, 0)  # Drive forward at full speed
         elif self.timer.get() < 8.0:
             print("Driving forwards at full speed")
-            self.drive.arcadeDrive(-1, 0)  # Drive forwards at full speed for 5 seconds
+            self.drive.driveCartesian(0, 1, 0)  # Drive right at full speed
         else:
             print("Awaiting end of autonomous period")
-            self.drive.arcadeDrive(0, 0)  # Stop robot
+            self.drive.driveCartesian(0, 0, 0)  # Stop the robot and await end of autonomous
 
     def teleopPeriodic(self):
         """This function is called periodically during operator control."""
@@ -50,13 +57,11 @@ class MyRobot(wpilib.TimedRobot):
         #  This is the deadzone code. If there are issues with it, comment it out, and uncomment the code below.
         #  This will activate arcadeDrive without any deadzone code.
         driveDirection = deadzone.addDeadzone(self.stick.getY(), self.stick.getX())
+
         print("X: " + str(driveDirection["x"]))
         print("Y: " + str(driveDirection["y"]))
-        self.drive.arcadeDrive(driveDirection["x"], driveDirection["y"])
 
-        #  Uncomment this to remove deadzone
-        # self.drive.arcadeDrive(self.stick.getX(), self.stick.getY())
-
+        self.drive.driveCartesian(driveDirection["y"], driveDirection["x"], 0)  # Drive on an X Y plain using joystick axis
 
 if __name__ == "__main__":
     wpilib.run(MyRobot)
