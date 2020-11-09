@@ -39,13 +39,13 @@ class MyRobot(wpilib.TimedRobot):
 
         """This function is called periodically during autonomous."""
         if self.timer.get() < 2.0:
-            print("Driving forward at half speed")
+            print("Driveing diagonal at half speed")
             self.drive.driveCartesian(0.5, 0.5, 0)  # Drive diagonal at half speed
         elif self.timer.get() < 3.0:
-            print("Driving at a 45 degree angle at half speed")
+            print("Driving forward at full speed")
             self.drive.driveCartesian(1, 0, 0)  # Drive forward at full speed
         elif self.timer.get() < 8.0:
-            print("Driving forwards at full speed")
+            print("Driving right at full speed")
             self.drive.driveCartesian(0, 1, 0)  # Drive right at full speed
         else:
             print("Awaiting end of autonomous period")
