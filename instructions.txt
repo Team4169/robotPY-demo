@@ -1,1 +1,5 @@
 IMPORTANT: robotpy-ctre NEEDS to be installed on the robot. Even if it's already on the team's computer!!!
+
+https://robotpy.readthedocs.io/projects/ctre/en/stable/api.html
+
+https://robotpy.readthedocs.io/en/stable/install/ctre.html#install-ctre
