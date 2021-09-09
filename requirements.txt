@@ -1,5 +1,0 @@
-pyfrc
-robotpy
-pynetworktables
-robotpy-ctre
-wpilib
