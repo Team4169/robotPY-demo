@@ -15,7 +15,7 @@ Install requirements
 ```shell
 pip3 install -r requirements.txt
 ```
-#Deploy and run demo code
+# Deploy and run demo code
 The optional nc param activates net console, which allows you to see that robots python logs on your local machine.
 ```shell
 python3 robot.py deploy --nc
