@@ -12,17 +12,22 @@ class MyRobot(wpilib.TimedRobot):
         should be used for any initialization code.
         """
 
-        # self.front_left_motor = wpilib.Talon(constants["frontLeftPort"])
-        # self.rear_left_motor = wpilib.Talon(constants["rearLeftPort"])
+        self.front_left_motor = ctre.WPI_TalonSRX(constants["frontLeftPort"])
+        self.rear_left_motor = ctre.WPI_TalonSRX(constants["rearLeftPort"])
         #
-        # self.front_right_motor = wpilib.Talon(constants["frontRightPort"])
-        # self.rear_right_motor = wpilib.Talon(constants["rearRightPort"])
-
+        self.front_right_motor = ctre.WPI_TalonSRX(constants["frontRightPort"])
+        self.rear_right_motor = ctre.WPI_TalonSRX(constants["rearRightPort"])
+        self.drive = wpilib.drive.MecanumDrive(
+            self.front_left_motor,
+            self.rear_left_motor,
+            self.front_right_motor,
+            self.rear_right_motor)
+        self.front_left_motor.setInverted(True)
+        self.rear_left_motor.setInverted(True)
         # self.test_motor = wpilib.PWMTalonSRX(10)
         self.test_motor = ctre.WPI_TalonSRX(10)
-        # self.drive = wpilib.drive.MecanumDrive(self.front_left_motor, self.rear_left_motor, self.front_right_motor, self.rear_right_motor)
-
-        # self.stick = wpilib.Joystick(0)
+        #
+        # # self.stick = wpilib.Joystick(0)
         self.controller = wpilib.XboxController(0)
         # self.timer = wpilib.Timer()
 
@@ -64,18 +69,43 @@ class MyRobot(wpilib.TimedRobot):
         # print("Y: " + str(driveDirection["y"]))
 
         # self.drive.driveCartesian(driveDirection["y"], driveDirection["x"], 0)  # Drive on an X Y plain using joystick axis
+        print("The drive X left is: ",self.controller.getX(self.controller.Hand.kLeftHand))
+        print("The drive Y left is: ",self.controller.getY(self.controller.Hand.kLeftHand))
+        self.drive.driveCartesian(
+            self.controller.getX(self.controller.Hand.kLeftHand),
+            self.controller.getY(self.controller.Hand.kLeftHand),
+            self.controller.getY(self.controller.Hand.kRightHand),0)
         isAPressed = self.controller.getAButton()
-        print(isAPressed)
+        # print(isAPressed)
+        isBpressed = self.controller.getBButton()
+        print("is b pressed:",isBpressed)
+        if isBpressed:
+            print("b pressed!")
+            self.front_left_motor.set(1)
+        else:
+            self.front_left_motor.set(0)
+        if self.controller.getXButton():
+            self.front_right_motor.set(1)
+        else:
+            self.front_right_motor.set(0)
+        if self.controller.getYButton():
+            self.rear_left_motor.set(1)
+        else:
+            self.rear_left_motor.set(0)
+        if self.controller.getAButton():
+            self.rear_right_motor.set(1)
+        else:
+            self.rear_right_motor.set(0)
         if isAPressed:
             self.test_motor.set(1)
-            print("Go!")
+            # print("Go!")
         else:
             self.test_motor.set(0)
-            print("Stop!")
-        print("!!")
-        print(self.test_motor.getSpeed())
-        print(self.test_motor.get())
-        print("??")
+            # print("Stop!")
+        # print("!!")
+        # print(self.test_motor.getSpeed())
+        # print(self.test_motor.get())
+        # print("??")
 
 if __name__ == "__main__":
     wpilib.run(MyRobot)
