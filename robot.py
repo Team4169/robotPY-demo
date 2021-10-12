@@ -45,18 +45,93 @@ class MyRobot(wpilib.TimedRobot):
         """
 
         """This function is called periodically during autonomous."""
+        """Demo"""
         # if self.timer.get() < 2.0:
-        #     print("Driveing diagonal at half speed")
-        #     self.drive.driveCartesian(0.5, 0.5, 0)  # Drive diagonal at half speed
+        #     self.drive.driveCartesian(0.5, 0.5, 0)
         # elif self.timer.get() < 3.0:
-        #     print("Driving forward at full speed")
-        #     self.drive.driveCartesian(1, 0, 0)  # Drive forward at full speed
+        #     self.drive.driveCartesian(1, 0, 0)
         # elif self.timer.get() < 8.0:
-        #     print("Driving right at full speed")
-        #     self.drive.driveCartesian(0, 1, 0)  # Drive right at full speed
+        #     self.drive.driveCartesian(0, 1, 0)
         # else:
-        #     print("Awaiting end of autonomous period")
-        #     self.drive.driveCartesian(0, 0, 0)  # Stop the robot and await end of autonomous
+        #     self.drive.driveCartesian(0, 0, 0)
+
+        """Madeleine"""
+        # # challenge 1
+        # if self.timer.get() < 5.0:
+        #     self.drive.cartesian(-1, 0, 0)
+        # elif self.timer.get() < 7.0:
+        #     self.drive.cartesian(1, 0, 0)
+        # elif self.drive.cartesian < 10.0:
+        #     self.drive.cartesian(-1, 0, 0)
+        #
+        # # challenge 2
+        #
+        # if self.timer.get() < 5.0:
+        #     self.drive.cartesian(-1, 0, 0)
+        # if self.timer.get() < 7.0:
+        #     self.drive.cartesian(-1, 0, 0)
+        # if self.timer.get() < 10.0:
+        #     self.drive.cartesian(1, 0, 0)
+
+        '''Liza'''
+        # # 1
+        # if self.timer.get() < 5.0:
+        #     self.drive.driveCartesian(0, -0.5, 0)
+        # elif self.timer.get() < 5.5:
+        #     self.drive.driveCartesian(0, 0, -1.0)
+        #
+        # if self.timer.get() < 8.0:
+        #     self.drive.driveCartesian(0, -0.5, 0)
+        #
+        # # 2
+        # if self.timer.get() < 5.0:
+        #     self.drive.driveCartesian(0, -0.5, 0)
+        # elif self.timer.get() < 7.0:
+        #     self.drive.driveCartesian(0, 0, -1.0)
+        # elif self.timer.get() < 10.0:
+        #     self.drive.driveCartesian(0, -0.5, 0)
+        # elif self.timer.get() < 10.5:
+        #     self.drive.driveCartesian(0, 0, 1.0)
+        # elif self.timer.get() < 13.5:
+        #     self.drive.driveCartesian(0, 0, -0.5)
+        '''Rusalan'''
+        # if self.timer.get() < 5.0:
+        #     self.drive.driveCartesian(0, -0.5, 1)
+        # elif self.timer.get() < 6.0:
+        #     self.drive.driveCartesian(0, 0.5, 1)
+        # elif self.timer.get() < 7.0:
+        #     self.drive.driveCartesian(1, 0, 1)
+        # elif self.timer.get() < 8.0:
+        #     self.drive.driveCartesian(0, 0.5, 0)
+        #
+        # if self.timer.get() < 5.0:
+        #     self.drive.driveCartesian(0, 0.5, 1)
+        # elif self.timer.get() < 7.0:
+        #     self.drive.driveCartesian(0, 0, 1)
+        # elif self.timer.get() < 7.0:
+        #     self.drive.driveCartesian(0, 0.5, 0)
+        # elif self.timer.get() < 8.0:
+        #     self.drive.driveCartesian(0, 0, 0)
+
+        '''Zain'''
+        # if self.timer.get() < 5.0:
+        #     self.drive.driveCartesian(0, -.5, 0)
+        # if self.timer.get() < 5.0:
+        #     self.drive.driveCartesian(0, 0, -0.5)
+        # elif self.timer.get() < 2.0:
+        #     self.drive.driveCartesian(0, .5, 0)
+        # elif self.timer.get() < 3.0:
+        #     self.drive.driveCartesian(0, -.5, 0)
+        #
+        # elif self.timer.get() < 5.0:
+        #     self.drive.driveCartesian(0, -.5, 0)
+        # elif self.timer.get() < 5.0:
+        #     self.drive.driveCartesian(0, .5, 0)
+        # elif self.timer.get() < 2.0:
+        #     self.drive.driveCartesian(0, -1, 0)
+        # elif self.timer.get() < 3.0:
+        #     self.drive.driveCartesian(0, 1, 0)
+
 
     def teleopPeriodic(self):
         """This function is called periodically during operator control."""
@@ -101,11 +176,7 @@ class MyRobot(wpilib.TimedRobot):
             # print("Go!")
         else:
             self.test_motor.set(0)
-            # print("Stop!")
-        # print("!!")
-        # print(self.test_motor.getSpeed())
-        # print(self.test_motor.get())
-        # print("??")
+
 
 if __name__ == "__main__":
     wpilib.run(MyRobot)
